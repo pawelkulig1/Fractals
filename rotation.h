@@ -13,7 +13,7 @@ void rotate_square_array_right(int n, int array[][n]);
 /* Rotates square array*/
 
 
-void rotate_pixel(int *x, int *y , double angle);
+void rotate_pixel(int *x, int *y ,int x_pocz, int y_pocz, double angle);
 /*Takes cordinates x, y and rotates pixel by angle around 0,0*/
 
 #endif

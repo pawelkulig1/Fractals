@@ -35,13 +35,15 @@ void rotate_square_array_right(int n, int array[][n])
 }
 
 
-void rotate_pixel(int *x, int *y , double angle)
+void rotate_pixel(int *x, int *y, int x_pocz, int y_pocz, double angle)
 {
 	double x_2 = *x, y_2 = *y;
 
 	x_2 = ((*x)*cos(angle*(PI/180)) - (*y)*sin(angle*(PI/180)));
 	y_2 = ((*x)*sin(angle*(PI/180)) + (*y)*cos(angle*(PI/180)));
 	
+	x_2 +=x_pocz;
+	y_2 +=y_pocz;
 	x_2 = round(x_2);
 	y_2 = round(y_2);
 	

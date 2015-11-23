@@ -6,6 +6,8 @@
 #include "gfx.h"
 #include "rotation.h"
 
+#define PI 3.14159265
+
 int text_length = 0; //length of given text
 int word_length = 6; // 6 OR 8
 int iter_count = 0; //number of iteration
@@ -88,10 +90,20 @@ void match_colors(int number, int *RGB);
 // ------------------------------------CONVERSIONS
 
 
+void square(); //draws square
+void triangle();
+
 
 int main()
 {
-	/*char text[100];
+	square();
+	return 0;
+}
+
+
+void square()
+{
+	char text[100];
 	printf("Prosze podac ciag znakow: ");
 	fgets(text, sizeof(text), stdin);
 
@@ -100,6 +112,7 @@ int main()
 	
 	printf("Prosze podac ilosc iteracji: ");
 	scanf("%i", &iter_count);
+	
 
 
 	text_length = length(text);
@@ -129,24 +142,97 @@ int main()
 	adding_inside_plane(plane_for_addition);
 	
 	draw_plane_square(plane_for_addition);
-	*/
-	
+}
+
+void triangle()
+{
+	int tab[4][4] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, 16};
 	gfx_open(1200,900 ,"Fractal graphic test");
 	
-	int x = 0;
-	int y = 10;
+	int x = 40;
+	int y = 0;
 	
 	draw_pixel(100,100, 100,100,100);
 	draw_pixel(x+100, -y+100, 255, 255, 255);
-	rotate_pixel(&x, &y, 180);
-	draw_pixel(x+100, -y+100, 200, 200, 200);
-	printf("%d, %d\n", x, y);
-	show_drawing();
+	int i=0;
+	for(i=0;i<180;i++)
+	{
+		rotate_pixel(&x, &y,0,0, i);
+		draw_pixel(x+100, -y+100, 200, 200, 200);
+	}
+	//printf("%d, %d\n", x, y);
+	//show_drawing();
 	
 
-	return 0;
-}
+	
 
+
+	double a =30;
+	double B = 90-a;
+	//int i=0;
+	int j=0;
+	//int x=0;
+	//int y=0;
+	
+	x=0;
+	y=0;
+	int x_r=0;
+	int y_r=0;
+	int plane_size=4;
+	
+	//int tab[4][4] = {0,1,2,3,4,5,6,7,8, 9, 10, 11, 12, 13, 14, 15};
+	
+	if(a==90)
+	{	//printf("1\n");
+		
+		//square()
+		
+	}	
+	
+	
+	else
+	{
+		//rotate_square_array_right(plane_size, tab);
+		int RGB[3] ={255,255,255};
+		a = 2*tan((B)*PI/180); //if we get 30* here we should divide by 2 to make peace 15*
+		//printf("%f\n", a);
+		for(i=0;i<plane_size;i++)
+		{
+			printf("\n");
+			for(j=0;j<plane_size;j++)
+			{
+				//printf("%d, %d, %d", i, j, tab[i][j]);
+				if(a*(plane_size - 1 -i)<=(plane_size - 1 - j))
+				{
+					/*x=300+plane_size - 1- i;
+					y= 300 +plane_size - 1 - j;
+					x_r=x;
+					y_r=-y;
+					
+					//rotate_pixel(&x, &y, 30);
+					//match_colors(tab[plane_size - 1- i][plane_size - 1 - j], RGB); 
+					
+					
+					draw_pixel(x, y, RGB[0], RGB[1], RGB[2]);
+					rotate_pixel(&x_r, &y_r,-175,650, 30);
+					draw_pixel(x_r, y_r, RGB[0], RGB[1], RGB[2]);
+					x+=2*i;
+					x_r=x;
+					y_r=-y;
+					draw_pixel(x, y, RGB[0], RGB[1], RGB[2]);
+					rotate_pixel(&x_r, &y_r, -175,650, 30);
+					draw_pixel(x_r, y_r, RGB[0], RGB[1], RGB[2]);
+					*/
+					
+					
+					
+					printf("x: %d, y:  %d, %d\n",plane_size - 1- i ,plane_size - 1 - j , tab[plane_size - 1- i][plane_size - 1 - j]); 
+				}
+			}
+		}
+	}
+	show_drawing();
+}
 
 void draw_plane_square(int plane[][word_length*iter_count])
 {
