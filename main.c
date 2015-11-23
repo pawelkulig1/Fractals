@@ -1,3 +1,7 @@
+/*
+	Pawel Kulig 2015
+*/
+
 #include <stdio.h>
 #include "gfx.h"
 #include "rotation.h"
@@ -87,7 +91,7 @@ void match_colors(int number, int *RGB);
 
 int main()
 {
-	char text[100];
+	/*char text[100];
 	printf("Prosze podac ciag znakow: ");
 	fgets(text, sizeof(text), stdin);
 
@@ -125,8 +129,19 @@ int main()
 	adding_inside_plane(plane_for_addition);
 	
 	draw_plane_square(plane_for_addition);
+	*/
 	
+	gfx_open(1200,900 ,"Fractal graphic test");
 	
+	int x = 0;
+	int y = 10;
+	
+	draw_pixel(100,100, 100,100,100);
+	draw_pixel(x+100, -y+100, 255, 255, 255);
+	rotate_pixel(&x, &y, 180);
+	draw_pixel(x+100, -y+100, 200, 200, 200);
+	printf("%d, %d\n", x, y);
+	show_drawing();
 	
 
 	return 0;
@@ -135,14 +150,23 @@ int main()
 
 void draw_plane_square(int plane[][word_length*iter_count])
 {
-	gfx_open(800,600 ,"Fractal graphic test");
+	gfx_open(1200,900 ,"Fractal graphic test");
 	int i=0; //iterator
 	int j=0; //iterator
 	int RGB[3] = {}; //colors RGB
 	int ratio = 4; // how many times is bigger 1 pixel 4 means 4x4 = 16
+	for(i=0;i<3;i++)
+	{
+		printf("%d ", ratio);
+		if((word_length*iter_count*ratio*2) > 900)
+			ratio--;
+		else break;
+	}
+	
 	int z=0; //iterator to draw scaled pixels
-	int x_pocz=400, y_pocz=300; //center of the screen
+	int x_pocz=1200/2, y_pocz=900/2; //center of the screen
 	int k = 0; // iterator to rotate array and draw it in another place
+	
 	for(k=0;k<4;k++)
 	{
 		for(i=0;i<word_length*iter_count;i++)
@@ -493,3 +517,7 @@ void show_drawing()
 		if(c=='q') break;
 	}
 }
+
+/*
+	Pawel Kulig 2015
+*/
